@@ -10,10 +10,12 @@
     "@material-ui/styles": "^4.10.0",
     "chart.js": "^2.9.3",
     "contentful": "^7.14.4",
+    "prop-types": "^15.7.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^2.1.1"
+    "react-scripts": "^2.1.1",
+    "recharts": "^1.8.5"
   },
   "scripts": {
     "start": "react-scripts start",

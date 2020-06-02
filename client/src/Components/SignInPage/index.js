@@ -14,12 +14,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Coins N. Stockin'
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -100,7 +101,7 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
+            <Button component ={Link} to ="/userdashboard" 
               type="submit"
               fullWidth
               variant="contained"
@@ -111,7 +112,7 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/userdashboard" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
