@@ -3,6 +3,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
+import Avatar from '@material-ui/core/Avatar';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -18,12 +19,10 @@ export default function Deposits() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
-      <Typography component="p" variant="h4">
-        $3,024.00
-      </Typography>
-      <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+      <Title>Welcome back {''}!</Title>
+      <Avatar alt="User" src="#" className={classes.large} />
+      <Typography color="textPrimary" className={classes.depositContext}>
+        Here's how your Crypto and Stocks are doin':
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>

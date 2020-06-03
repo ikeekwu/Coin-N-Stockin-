@@ -5,20 +5,30 @@ import SignUp from './Components/SignUpPage/index';
 import UserDashboard from './Components/UserDashboard/index'
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import {green, red, deepPurple} from "@material-ui/core/colors";
 import "./App.css";
 
 
 function App (){
-  const darkTheme = createMuiTheme({
+  const theme = createMuiTheme({
     palette: {
-      type: 'dark',
+      primary: {
+        main:green[800],
+      },
+      secondary: {
+        main: red[900],
+      },
+      tertiary: {
+        main: deepPurple,
+      },
+      
     },
   });
 
 
   return (
   
-  <ThemeProvider theme = {darkTheme}>
+  <ThemeProvider theme = {theme}>
 
     <React.Fragment>
       <Router>
