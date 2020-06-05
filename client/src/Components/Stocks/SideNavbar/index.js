@@ -7,7 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
@@ -45,11 +44,6 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Stocks" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
+    
   </div>
 );

@@ -101,18 +101,21 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button component ={Link} to ="/userdashboard" 
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
+
+            <Link href="/userdashboard" variant="body2">
+              <Button component ={Link} to ="/userdashboard" 
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Sign In
+              </Button>
+            </Link>
             <Grid container>
               <Grid item xs>
-                <Link href="/userdashboard" variant="body2">
+                <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>

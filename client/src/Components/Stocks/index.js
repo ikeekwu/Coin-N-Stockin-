@@ -22,11 +22,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
 import StockComponent from './StockComponent/index';
-import StockWatch from './StockWatch/index';
-import UserSquare from './UserSquare/index';
-import CryptoComponent from './CryptoComponent/index';
-import CryptoWatch from './CryptoWatch/index';
-import Avatar from '@material-ui/core/Avatar';
 import Portfolio from '../Portfolio/index'
 
 function Copyright() {
@@ -167,7 +162,7 @@ export default function Dashboard() {
           </IconButton>
 
           {/*User picture ! */}
-          <Avatar alt="User" src="#" className={classes.small} />
+          
           
         </Toolbar>
       </AppBar>
@@ -196,47 +191,18 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={6}>
-
-            {/* User Square */}
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper className={classes.paper}>
-                <UserSquare />
-              </Paper>
-            </Grid>
-
-            <Grid item xs={12} md={4} lg={8}>
-              <Paper className={classes.paper}>
-                <Portfolio/>
-              </Paper>
-            </Grid>
-
-          </Grid>
 
           <Grid container spacing = {6}>
             {/* Chart.js with stocks */}
+
             <Grid item xs={12} md={6} lg={6}>
+              <Paper className={classes.paper}>
+                <Portfolio />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={12}>
               <Paper className={fixedHeightPaper}>
                 <StockComponent />
-              </Paper>
-            </Grid>
-
-            <Grid item xs={12} md ={6} lg={6}>
-              <Paper className={fixedHeightPaper}>
-                <CryptoComponent />
-              </Paper>
-            </Grid>
-
-
-            {/* Stocks and crypto to look at  */}
-            <Grid item xs={12}>
-              <Paper className={fixedHeightPaper}>
-                <StockWatch />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <CryptoWatch />
               </Paper>
             </Grid>
 

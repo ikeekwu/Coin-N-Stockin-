@@ -2,8 +2,8 @@ import React from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Title from './Title';
-import Avatar from '@material-ui/core/Avatar';
+import Title from '../UserDashboard/TitleComponent/index';
+
 
 function preventDefault(event) {
   event.preventDefault();
@@ -19,14 +19,18 @@ export default function Deposits() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Welcome back {''}!</Title>
-      <Avatar alt="User" src="#" className={classes.large} />
+      <Title>Your Portfolio</Title>
+      
       <Typography color="textPrimary" className={classes.depositContext}>
-        Here's how your Crypto and Stocks are doin':
+        This is where you see if you gained or lost money!
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
+          View wins
+        </Link>
+        
+        <Link color="secondary" href="#" onClick={preventDefault}>
+          View losses
         </Link>
       </div>
     </React.Fragment>
