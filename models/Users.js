@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bycrpt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -39,13 +39,13 @@ const UserSchema = new Schema({
 
 
 UserSchema.methods.generateHash = function(password) {
-    return bycrpt.hashSync(password, bycrpt.genSaltSync(8), null) ;
+    return bcrypt.hashSync(password, bycrpt.genSaltSync(8), null) ;
 
 
 }
 
 UserSchema.methods.validPassword = function(password) {
-    return bycrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.password);
 }
 
 const User = mongoose.model("User", UserSchema)
