@@ -20,7 +20,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Coins N. Stockin'
+        Coins N' Stockin'
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

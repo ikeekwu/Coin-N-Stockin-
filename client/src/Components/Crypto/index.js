@@ -23,6 +23,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
 import CryptoComponent from './CryptoComponent/index';
 import Portfolio from '../Portfolio/index';
+import SearchBar from '../SearchBar/index';
 
 function Copyright() {
   return (
@@ -152,6 +153,8 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
+          
+         
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
@@ -189,7 +192,17 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          
+          <Grid container spacing ={6} justify="flex-end">
 
+            <Grid item>
+              <Paper>
+                <SearchBar/>
+              </Paper>
+              
+            </Grid>
+          </Grid>
+          
           <Grid container spacing={6}>
 
             <Grid item xs={12} md={6} lg={6}>

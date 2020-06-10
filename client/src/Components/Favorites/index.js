@@ -22,7 +22,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
 import Portfolio from '../Portfolio/index'
-import FavoriteList from './FavoriteList/index'
+import FavoriteList from './FavoriteList/index';
+import SearchBar from '../SearchBar/index';
 
 function Copyright() {
   return (
@@ -160,9 +161,6 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-
-          {/*User picture ! */}
-          
           
         </Toolbar>
       </AppBar>
@@ -191,6 +189,18 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          
+          <Grid container spacing ={6} justify="flex-end">
+
+            <Grid item>
+              <Paper>
+                <SearchBar/>
+              </Paper>
+              
+            </Grid>
+
+          </Grid>
+          
           <Grid container spacing={6}>
 
             <Grid item xs={12} md={4} lg={8}>

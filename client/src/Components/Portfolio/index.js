@@ -3,6 +3,8 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from '../UserDashboard/TitleComponent/index';
+import Grid from '@material-ui/core/Grid';
+
 
 
 function preventDefault(event) {
@@ -25,13 +27,21 @@ export default function Deposits() {
         This is where you see if you gained or lost money!
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View wins
-        </Link>
-        
-        <Link color="secondary" href="#" onClick={preventDefault}>
-          View losses
-        </Link>
+        <Grid container spacing={4}>
+          
+          <Grid item lg={6}>
+            <Link color="primary" href="#" onClick={preventDefault}>
+            View wins
+            </Link>
+          </Grid>
+
+          <Grid item lg={6}>
+            <Link color="secondary" href="#" onClick={preventDefault}>
+              View losses
+            </Link>
+          </Grid>
+
+        </Grid>
       </div>
     </React.Fragment>
   );

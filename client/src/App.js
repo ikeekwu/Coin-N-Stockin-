@@ -1,7 +1,6 @@
 //Main app with the landing page 
 
 import React from "react";
-import Footer from './Components/Footer/index';
 import SignIn from './Components/SignInPage/index';
 import SignUp from './Components/SignUpPage/index';
 import UserDashboard from './Components/UserDashboard/index';
@@ -38,7 +37,7 @@ function App (){
           <Switch>
             <Route exact path = {"/"}>
               <SignIn components = {SignIn} />
-              <Footer/>
+              
             </Route>
             <Route exact path = {"/signup"}>
               <SignUp components = {SignUp} />

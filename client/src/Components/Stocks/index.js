@@ -22,7 +22,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
 import StockComponent from './StockComponent/index';
-import Portfolio from '../Portfolio/index'
+import Portfolio from '../Portfolio/index';
+import SearchBar from '../SearchBar/index';
 
 function Copyright() {
   return (
@@ -191,6 +192,17 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+
+          <Grid container spacing ={6} justify="flex-end">
+
+            <Grid item>
+
+              <Paper>
+                <SearchBar/>
+              </Paper>
+              
+            </Grid>
+          </Grid>
 
           <Grid container spacing = {6}>
             {/* Chart.js with stocks */}
