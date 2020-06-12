@@ -18,12 +18,13 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
 import StockComponent from './StockComponent/index';
-import StockWatch from './StockWatch/index';
+import StockWatch from '../StockWatch/index';
 import UserSquare from './UserSquare/index';
 import CryptoComponent from './CryptoComponent/index';
-import CryptoWatch from './CryptoWatch/index';
+import CryptoWatch from '../CryptoWatch/index';
 import Avatar from '@material-ui/core/Avatar';
 import Portfolio from '../Portfolio/index';
 import DashboardFooter from '../DashboardFooter/index';
@@ -132,6 +133,7 @@ export default function Dashboard() {
 
   return (
     <div className={classes.root}>
+      
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
@@ -147,14 +149,22 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
+
+
+          {/*User picture ! */}
+          <Avatar alt="User" src="#" className={classes.large} color ="primary"/>
+
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
 
-          {/*User picture ! */}
-          <Avatar alt="User" src="#" className={classes.small} />
+          <IconButton color="inherit">
+            <Badge color="secondary">
+              <ExitToAppIcon/> Logout
+            </Badge>
+          </IconButton>
           
         </Toolbar>
       </AppBar>
@@ -173,6 +183,8 @@ export default function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        {/*User picture ! */}
+        <Avatar alt="User" src="#" className={classes.large} color ="primary" justifyContent="center"/>
         <Divider />
         <List>{mainListItems}</List>
         <Divider />

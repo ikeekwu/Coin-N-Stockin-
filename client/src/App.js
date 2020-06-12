@@ -14,6 +14,7 @@ import "./App.css";
 
 
 function App (){
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -26,6 +27,7 @@ function App (){
     },
   });
 
+  
 
   return (
   
@@ -46,7 +48,7 @@ function App (){
 
             <Route exact path = {"/userdashboard"}>
               <UserDashboard components = {UserDashboard} />
-              
+             
             </Route>
 
             <Route exact path = {"/userdashboard/crypto"}>
