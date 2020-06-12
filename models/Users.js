@@ -23,14 +23,9 @@ const UserSchema = new Schema({
         required: true,
         default: ''
     },
-    favCrypto: [{
-        type: String,
-        default: ''
-    }],
-    favStocks: [{
-        type:String,
-        default: ''
-    }],
+    favorites: {
+        
+    },
     isDeleted: {
         type: Boolean,
         default: false

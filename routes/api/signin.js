@@ -222,5 +222,15 @@ router.get('/api/account/logout', (req, res, next) => {
     })  
 });
 
+router.post('/api/account/assets', (req,res, next) => {
+            const {
+                body
+            } = req;
+            const {
 
+            } = body;
+            let {
+                email
+            } = body;
+});
 module.exports = router
