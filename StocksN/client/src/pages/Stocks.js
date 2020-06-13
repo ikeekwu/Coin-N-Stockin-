@@ -1,6 +1,6 @@
 //Main holder for Userdashboard 
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,143 +20,163 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import StockComponent from './StockComponent/index';
-import Portfolio from '../Portfolio/index';
+
+import { mainListItems, secondaryListItems } from '../Components/SideNavbar';
+import StockComponent from '../Components/StockComponent/index';
+import StockWatch from '../Components/StockWatch/index';
+import Portfolio from '../Components/Portfolio/index';
 
 import API from "../utils/API.js";
 
 
-export default class Stocks extends React.Component {
-  constructor(props){
-    super(props);
+function Stocks() {
+  
+  function Copyright() {
+  return (
+  <Typography variant="body2" color="textSecondary" align="center">
+    {'Copyright © '}
+    <Link color="inherit" href="https://material-ui.com/">
+      Your Website
+    </Link>{' '}
+    {new Date().getFullYear()}
+    {'.'}
+  </Typography>
+  );
+  }
+  const drawerWidth = 240;
+  const useStyles = makeStyles((theme) => ({
+  root: {
+  display: 'flex',
+  },
+  toolbar: {
+  paddingRight: 24, // keep right padding when drawer closed
+  },
+  toolbarIcon: {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: '0 8px',
+  ...theme.mixins.toolbar,
+  },
+  appBar: {
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  },
+  appBarShift: {
+  marginLeft: drawerWidth,
+  width: `calc(100% - ${drawerWidth}px)`,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  },
+  menuButton: {
+  marginRight: 36,
+  },
+  menuButtonHidden: {
+  display: 'none',
+  },
+  title: {
+  flexGrow: 1,
+  },
+  drawerPaper: {
+  position: 'relative',
+  whiteSpace: 'nowrap',
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  },
+  drawerPaperClose: {
+  overflowX: 'hidden',
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  width: theme.spacing(7),
+  [theme.breakpoints.up('sm')]: {
+    width: theme.spacing(9),
+  },
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+  flexGrow: 1,
+  height: '100vh',
+  overflow: 'auto',
+  },
+  container: {
+  paddingTop: theme.spacing(4),
+  paddingBottom: theme.spacing(4),
+  },
+  paper: {
+  padding: theme.spacing(2),
+  display: 'flex',
+  overflow: 'auto',
+  flexDirection: 'column',
+  },
+  fixedHeight: {
+  height: 250,
+  },
 
-    this.state = {
-      search: "",
-      stocks: [],
-      results: [],
-      error: ""
-    };
-  } 
+  small: {
+  width: theme.spacing(3),
+  height: theme.spacing(3),
+  },
+  large: {
+  width: theme.spacing(7),
+  height: theme.spacing(7),
+  },
+  }));
+
+
+  // function NewScript(src){
+  //         let script = document.createElement('script');
+  //               script.src = src;
+  //               script.async = true;
+
+  //         document.head.appendChild(script)
+  // }
+  // NewScript('/static/chartjs-chart-financial.js');
   
 
-  componentDidMount() {
-    API.getAllStocks()
-      .then(res => 
-        // this.setState({ results: res.data.companies } )
-        console.log(res.data)
-        // this.setState
-            )
-      .catch(err => console.log(err));
-  };
 
-  Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
+
+    
+  
+  const [company, setCompany] = useState({})
+  const [stock, setStock] = useState({})
+  
+    useEffect(() => {
+      async function load(){
+        const stockss = await loadStocks();
+        await searchStocks(stockss)
+      }
+      load();
+    }, [])
+  
+  function loadStocks(){
+    return API.getAllStocks()
+      .then(res => {
+        setStock(res.data)
+        return(res.data)
+      })
+      .catch(err => console.log(err));
+    };
+      
+   async function searchStocks(stockss){ 
+    await API.getStockPrices(stockss)
+      .then(res =>{
+        setCompany(res.data)})
+      .catch(err => console.log(err));
   }
   
-  drawerWidth = 240;
-  
-  useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    toolbar: {
-      paddingRight: 24, // keep right padding when drawer closed
-    },
-    toolbarIcon: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: '0 8px',
-      ...theme.mixins.toolbar,
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    menuButton: {
-      marginRight: 36,
-    },
-    menuButtonHidden: {
-      display: 'none',
-    },
-    title: {
-      flexGrow: 1,
-    },
-    drawerPaper: {
-      position: 'relative',
-      whiteSpace: 'nowrap',
-      width: drawerWidth,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    drawerPaperClose: {
-      overflowX: 'hidden',
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9),
-      },
-    },
-    appBarSpacer: theme.mixins.toolbar,
-    content: {
-      flexGrow: 1,
-      height: '100vh',
-      overflow: 'auto',
-    },
-    container: {
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
-    },
-    paper: {
-      padding: theme.spacing(2),
-      display: 'flex',
-      overflow: 'auto',
-      flexDirection: 'column',
-    },
-    fixedHeight: {
-      height: 250,
-    },
     
-    small: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
-    },
-    large: {
-      width: theme.spacing(7),
-      height: theme.spacing(7),
-    },
-  }));
-  
-  
 
-  
-  render(){
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -166,83 +186,92 @@ export default class Stocks extends React.Component {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-    // console.log(this.state.results)
-    return (
-      <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="teal"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Coins N' Stockin'
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
 
-          {/*User picture ! */}
+  return (
+  
+  <div className={classes.root}>
+  <CssBaseline />
+  <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+  <Toolbar className={classes.toolbar}>
+    <IconButton
+      edge="start"
+      color="primary"
+      aria-label="open drawer"
+      onClick={handleDrawerOpen}
+      className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+    >
+      <MenuIcon />
+    </IconButton>
+    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+      Coins N' Stockin'
+    </Typography>
+    <IconButton color="inherit">
+      <Badge badgeContent={4} color="secondary">
+        <NotificationsIcon />
+      </Badge>
+    </IconButton>
+
+    {/*User picture ! */}
+    
+    
+  </Toolbar>
+  </AppBar>
+
+
+  <Drawer
+  variant="permanent"
+  classes={{
+    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+  }}
+  open={open}
+
+  >
+  <div className={classes.toolbarIcon}>
+    <IconButton  onClick={handleDrawerClose}>
+      <ChevronLeftIcon />
+    </IconButton>
+  </div>
+  <Divider />
+  <List>{mainListItems}</List>
+  <Divider />
+  <List>{secondaryListItems}</List>
+  </Drawer>
+
+
+  <main className={classes.content}>
+  <div className={classes.appBarSpacer} />
+  <Container maxWidth="lg" className={classes.container}>
+  <script src="../node_modules/chart.js/dist/Chart.bundle.js"></script>
+
+    <Grid container spacing = {6}>
+      {/* Chart.js with stocks */}
+
+      <Grid item xs={12} md={6} lg={6}>
+        <Paper className={classes.paper}>
+          <Portfolio />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={6} lg={12}>
+        <Paper className={fixedHeightPaper}>
+          <StockComponent />
+        </Paper>
+      </Grid>
+
+      <Grid item xs={12} md={6} lg={12}>
+        <Paper className={fixedHeightPaper}>
           
-          
-        </Toolbar>
-      </AppBar>
+          <StockWatch stockPrice={company} />
+        </Paper>
+      </Grid>
 
-      
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-        
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton  onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>
-
-
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-
-          <Grid container spacing = {6}>
-            {/* Chart.js with stocks */}
-
-            <Grid item xs={12} md={6} lg={6}>
-              <Paper className={classes.paper}>
-                <Portfolio />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6} lg={12}>
-              <Paper className={fixedHeightPaper}>
-                <StockComponent />
-              </Paper>
-            </Grid>
-
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
+    </Grid>
+    <Box pt={4}>
+      <Copyright />
+    </Box>
+  </Container>
+  </main>
+  </div>
         )
-    }
 }
 
+export default Stocks;

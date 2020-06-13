@@ -13,4 +13,7 @@ export default {
   getFavorites: function() {
     return axios.get("/books/id");
   },
+  getStockPrices: function(stockPrices){
+    return axios.post("/api/stocks/", stockPrices)
+  }
 };

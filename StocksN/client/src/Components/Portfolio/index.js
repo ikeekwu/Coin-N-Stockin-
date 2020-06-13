@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Title from '../UserDashboard/TitleComponent/index';
+import Title from '../TitleComponent/index.js';
 
 
 function preventDefault(event) {
