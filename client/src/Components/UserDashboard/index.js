@@ -269,7 +269,6 @@ const useStyles = makeStyles((theme) => ({
             {/* Chart.js with stocks */}
             <Grid item xs={12} md={6} lg={6}>
               <Paper className={fixedHeightPaper}>
-                <SearchBar/>
                 <StockComponent />
               </Paper>
             </Grid>
