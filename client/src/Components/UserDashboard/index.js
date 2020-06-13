@@ -25,9 +25,10 @@ import StockWatch from '../StockWatch/index';
 import UserSquare from './UserSquare/index';
 import CryptoComponent from './CryptoComponent/index';
 import CryptoWatch from '../CryptoWatch/index';
-import Avatar from '@material-ui/core/Avatar';
 import Portfolio from '../Portfolio/index';
 import DashboardFooter from '../DashboardFooter/index';
+
+
 
 
 const drawerWidth = 240;
@@ -139,20 +140,25 @@ export default function Dashboard() {
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            color="teal"
+            color="primary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+
+          <IconButton color="inherit">
+            <Badge >
+            <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
+            </Badge>
+          </IconButton>
+          <Typography component="h1" variant="h6" color="inherit"  className={classes.title}>
             Coins N' Stockin'
           </Typography>
 
 
-          {/*User picture ! */}
-          <Avatar alt="User" src="#" className={classes.large} color ="primary"/>
+          
 
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -184,7 +190,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         {/*User picture ! */}
-        <Avatar alt="User" src="#" className={classes.large} color ="primary" justifyContent="center"/>
+       
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
