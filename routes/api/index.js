@@ -1,13 +1,15 @@
 const router = require("express").Router();
+const signin = require("./signin");
+
+
 const crypto = require("./crypto");
 const stocks = require("./stocks");
-const signin = require("./signin");
 
 // Crypto routes
 router.use("/crypto", crypto);
 // Stocks
 router.use("/stocks", stocks);
 // SignIn
-router.use('/signin', signin);
+router.use('/account', signin);
 
 module.exports = router;

@@ -45,7 +45,6 @@ function App (){
             <Route exact path = {"/"}>
               <SignIn components = {SignIn} />
               
-              <Footer/>
             </Route>
             
             <Route exact path = {"/signup"}>

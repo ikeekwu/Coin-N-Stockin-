@@ -2,7 +2,11 @@ const User = require('../../models/Users')
 var router = require('express').Router();
 const UserSession = require('../../models/UserSession');
 
-router.post('/api/account/signup', (req, res, next) => {
+
+// /api/account
+
+
+router.post('/signup', (req, res, next) => {
         const { body } = req;
         const {
             firstName,
@@ -89,7 +93,7 @@ router.post('/api/account/signup', (req, res, next) => {
 
 }); 
 
-router.post('/api/account/signin', (req, res, next) => {
+router.post('/signin', (req, res, next) => {
         const { body } = req;
         const { password } = body;
         let { email } = body;
