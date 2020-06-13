@@ -217,7 +217,10 @@ console.log(props)
 //     update();
 //   })
 
-	
+	const realdata = [{
+		x: new Date(props.stockWatch.stockPrice[0].last_time),
+		y: []
+	}]	
  
   
 
@@ -225,6 +228,7 @@ console.log(props)
 
 	const jokeData = [{
 		x: new Date(1538778600000),
+		// [O, H, L, C]
 		y: [6629.81, 6650.5, 6623.04, 6633.33]
 	  },
 	  {
