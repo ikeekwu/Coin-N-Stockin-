@@ -1,6 +1,6 @@
 //Main holder for Userdashboard 
 
-import React from 'react';
+import React, { useState, useRef , useEffect} from "react";
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,20 +21,15 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import StockComponent from './StockComponent/index';
+import StockComponent from '../StockComponent';
 import Portfolio from '../Portfolio/index';
 import SearchBar from '../SearchBar/index';
 import DashboardFooter from '../DashboardFooter/index';
 
 import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import StockComponent from '../StockComponent';
-import Portfolio from '../Portfolio/index'
 import CandleStick from '../CandleStick';
 
+import API from "../../utils/API.js";
 
 const drawerWidth = 240;
 
