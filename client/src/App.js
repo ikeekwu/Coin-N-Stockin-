@@ -1,6 +1,6 @@
 //Main app with the landing page 
 
-import React from "react";
+import React, { useRef , useEffect} from "react";
 import SignIn from './Components/SignInPage/index';
 import SignUp from './Components/SignUpPage/index';
 import UserDashboard from './Components/UserDashboard/index';
@@ -11,9 +11,15 @@ import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import {green, red,} from "@material-ui/core/colors";
 import "./App.css";
+import "./utils/CSS/App.css";
 
+import Footer from './Components/Footer/index';
+
+import UserDashboard from './pages/UserDashboard.js';
+import Stocks from './pages/Stocks.js';
 
 function App (){
+
 
   const theme = createMuiTheme({
     palette: {
@@ -25,13 +31,12 @@ function App (){
       },
       
     },
-  });
-
-  
+  });  
 
   return (
   
   <ThemeProvider theme = {theme}>
+
 
     <React.Fragment>
       <Router>
@@ -41,6 +46,9 @@ function App (){
               <SignIn components = {SignIn} />
               
             </Route>
+              <Footer/>
+            </Route>
+            
             <Route exact path = {"/signup"}>
               <SignUp components = {SignUp} />
               
@@ -49,6 +57,7 @@ function App (){
             <Route exact path = {"/userdashboard"}>
               <UserDashboard components = {UserDashboard} />
              
+
             </Route>
 
             <Route exact path = {"/userdashboard/crypto"}>
@@ -58,6 +67,7 @@ function App (){
 
             <Route exact path = {"/userdashboard/stocks"}>
               <Stocks components = {Stocks} />
+
               
             </Route>
             <Route exact path = {"/userdashboard/favorites"}>
@@ -71,10 +81,9 @@ function App (){
       
     </React.Fragment>
   </ThemeProvider>
-    
+
   
-  )
-  
+  );
 }
 
 export default App;
