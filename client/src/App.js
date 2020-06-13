@@ -1,20 +1,80 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+//Main app with the landing page 
+
+import React from "react";
+import SignIn from './Components/SignInPage/index';
+import SignUp from './Components/SignUpPage/index';
+import UserDashboard from './Components/UserDashboard/index';
+import Favorites from './Components/Favorites/index'
+import Crypto from './Components/Crypto/index';
+import Stocks from './Components/Stocks/index';
+import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import {green, red,} from "@material-ui/core/colors";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-    </div>
-  );
-}
 
+function App (){
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main:green[800],
+      },
+      secondary: {
+        main: red[900],
+      },
+      
+    },
+  });
+
+  
+
+  return (
+  
+  <ThemeProvider theme = {theme}>
+
+    <React.Fragment>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path = {"/"}>
+              <SignIn components = {SignIn} />
+              
+            </Route>
+            <Route exact path = {"/signup"}>
+              <SignUp components = {SignUp} />
+              
+            </Route>
+
+            <Route exact path = {"/userdashboard"}>
+              <UserDashboard components = {UserDashboard} />
+             
+            </Route>
+
+            <Route exact path = {"/userdashboard/crypto"}>
+              <Crypto components = {Crypto} />
+              
+            </Route>
+
+            <Route exact path = {"/userdashboard/stocks"}>
+              <Stocks components = {Stocks} />
+              
+            </Route>
+            <Route exact path = {"/userdashboard/favorites"}>
+              <Favorites components = {Favorites} />
+              
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+      
+      
+    </React.Fragment>
+  </ThemeProvider>
+    
+  
+  )
+  
+}
 
 export default App;
