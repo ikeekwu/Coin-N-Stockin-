@@ -32,6 +32,11 @@ module.exports = {
                 res.json(boxData)
             })
             .catch(err => console.log(err))
+    },
+    getNews: function(req, res){
+        const {body} = req
+        // console.log(body)
+        const {news} = body
     }
     
 }

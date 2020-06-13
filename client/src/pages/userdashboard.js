@@ -139,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
 
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -147,6 +147,16 @@ const useStyles = makeStyles((theme) => ({
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+
+
+
+
+
+
+
+
+
 
   // Stocks
   const [company, setCompany] = useState({})
@@ -181,11 +191,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+  const [formObject, setFormObject] = useState({})
 
 
 
 
-
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({...formObject, [name]: value})
+  };
 
 
 
@@ -267,7 +281,6 @@ const useStyles = makeStyles((theme) => ({
             {/* Chart.js with stocks */}
             <Grid item xs={12} md={6} lg={6}>
               <Paper className={fixedHeightPaper}>
-                <SearchBar/>
                 <StockComponent />
               </Paper>
             </Grid>
