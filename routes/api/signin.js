@@ -230,7 +230,7 @@ router.post('/api/account/assets', (req,res, next) => {
 
             } = body;
             let {
-                email
+                favorites
             } = body;
 });
 module.exports = router

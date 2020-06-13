@@ -23,9 +23,7 @@ const UserSchema = new Schema({
         required: true,
         default: ''
     },
-    favorites: {
-        
-    },
+    favorites: [],
     isDeleted: {
         type: Boolean,
         default: false
