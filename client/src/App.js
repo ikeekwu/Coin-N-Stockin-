@@ -3,10 +3,10 @@
 import React, { useRef , useEffect} from "react";
 import SignIn from './Components/SignInPage/index';
 import SignUp from './Components/SignUpPage/index';
-import UserDashboard from './Components/UserDashboard/index';
+// import UserDashboard from './Components/UserDashboard/index';
 import Favorites from './Components/Favorites/index'
 import Crypto from './Components/Crypto/index';
-import Stocks from './Components/Stocks/index';
+// import Stocks from './Components/Stocks/index';
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import {green, red,} from "@material-ui/core/colors";
@@ -45,7 +45,6 @@ function App (){
             <Route exact path = {"/"}>
               <SignIn components = {SignIn} />
               
-            </Route>
               <Footer/>
             </Route>
             

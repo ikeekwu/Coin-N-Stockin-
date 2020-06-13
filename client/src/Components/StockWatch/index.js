@@ -219,10 +219,10 @@ console.log(props)
 //     update();
 //   })
 
-	const realdata = [{
-		x: new Date(props.stockWatch.stockPrice[0].last_time),
-		y: []
-	}]	
+	// const realdata = [{
+	// 	x: new Date(props.stockWatch.stockPrice[0].last_time),
+	// 	y: []
+	// }]	
  
   
 
