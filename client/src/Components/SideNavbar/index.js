@@ -10,6 +10,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Link from '@material-ui/core/Link';
+import DarkMode from '../DarkMode/index';
+
+
 
 export const mainListItems = (
   <div>
@@ -54,5 +57,8 @@ export const secondaryListItems = (
       <ListItemText primary="Stocks" />
     </ListItem>
     </Link>
+
+    <DarkMode justifyContent ="flex-start" /> Dark Mode
+
   </div>
 );

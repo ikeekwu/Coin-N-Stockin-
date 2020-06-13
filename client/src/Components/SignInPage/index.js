@@ -15,12 +15,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Coins N. Stockin'
+        Coins N' Stockin'
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -56,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color:"white",
+
   },
 }));
 
@@ -102,7 +105,8 @@ export default function SignInSide() {
               label="Remember me"
             />
 
-            <Link href="/userdashboard" variant="body2">
+            <Link href="/userdashboard" variant="inherit">
+
               <Button component ={Link} to ="/userdashboard" 
                 type="submit"
                 fullWidth

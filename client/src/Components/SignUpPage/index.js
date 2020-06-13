@@ -18,7 +18,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Coins N' Stockin'
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -110,7 +110,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I want updates of stocks and crypto via email."
               />
             </Grid>
           </Grid>
@@ -125,7 +125,8 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/" variant="body2">
+
                 Already have an account? Sign in
               </Link>
             </Grid>

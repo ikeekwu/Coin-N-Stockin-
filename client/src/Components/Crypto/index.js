@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,26 +17,33 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
 import CryptoComponent from './CryptoComponent/index';
 import Portfolio from '../Portfolio/index';
+import SearchBar from '../SearchBar/index';
+import DashboardFooter from '../DashboardFooter/index';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
+
+import Link from '@material-ui/core/Link';
+
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -152,6 +160,13 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
+          
+          <IconButton color="inherit">
+            <Badge >
+            <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
+            </Badge>
+          </IconButton>
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
@@ -161,7 +176,12 @@ export default function Dashboard() {
             </Badge>
           </IconButton>
 
-          
+          <IconButton color="inherit">
+            <Badge color="secondary">
+              <ExitToAppIcon/> Logout
+            </Badge>
+          </IconButton>
+
         </Toolbar>
       </AppBar>
 
@@ -189,6 +209,17 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          
+          <Grid container spacing ={6} justify="flex-end">
+
+            <Grid item>
+              <Paper>
+                <SearchBar/>
+              </Paper>
+              
+            </Grid>
+          </Grid>
+          
 
           <Grid container spacing={6}>
 
@@ -209,10 +240,10 @@ export default function Dashboard() {
             </Grid>
 
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
+          
         </Container>
+        <DashboardFooter/>
+
       </main>
     </div>
   );

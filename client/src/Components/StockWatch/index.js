@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import Title from '../TitleComponent/index.js';
+import { useTheme } from '@material-ui/core/styles';
 import CandleStick from '../CandleStick';
 import useScript from './useScript';
 import moment from 'moment';
@@ -217,10 +219,10 @@ console.log(props)
 //     update();
 //   })
 
-	const realdata = [{
-		x: new Date(props.stockWatch.stockPrice[0].last_time),
-		y: []
-	}]	
+	// const realdata = [{
+	// 	x: new Date(props.stockWatch.stockPrice[0].last_time),
+	// 	y: []
+	// }]	
  
   
 
@@ -282,7 +284,36 @@ console.log(props)
 
 
 
+// const theme = useTheme();
 
+//   return (
+//     <React.Fragment>
+//       <Title>Stocks to watch:</Title>
+//       <ResponsiveContainer>
+//         <LineChart
+//           data={data}
+//           margin={{
+//             top: 16,
+//             right: 16,
+//             bottom: 0,
+//             left: 24,
+//           }}
+//         >
+//           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
+//           <YAxis stroke={theme.palette.text.secondary}>
+//             <Label
+//               angle={270}
+//               position="left"
+//               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+//             >
+//               Sales ($)
+//             </Label>
+//           </YAxis>
+//           <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
+//         </LineChart>
+//       </ResponsiveContainer>
+//     </React.Fragment>
+//   );
 
 
 

@@ -1,21 +1,26 @@
 //Main app with the landing page 
-import React, { useRef , useEffect} from "react";
 
-import Footer from './Components/Footer/index';
+import React, { useRef , useEffect} from "react";
 import SignIn from './Components/SignInPage/index';
 import SignUp from './Components/SignUpPage/index';
+// import UserDashboard from './Components/UserDashboard/index';
 import Favorites from './Components/Favorites/index'
 import Crypto from './Components/Crypto/index';
+// import Stocks from './Components/Stocks/index';
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import {green, red,} from "@material-ui/core/colors";
+import "./App.css";
 import "./utils/CSS/App.css";
-// Pages
+
+import Footer from './Components/Footer/index';
+
 import UserDashboard from './pages/UserDashboard.js';
 import Stocks from './pages/Stocks.js';
 
-
 function App (){
+
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -26,26 +31,20 @@ function App (){
       },
       
     },
-  });
-
-  // const instance = useRef(null)
-
-  // useEffect(() => {
-  //   const scriptTag = document.createElement("script");
-  //   scriptTag.src = "http://localhost:3000/userdashboard/"
-  //   instance.current.appendChild(scriptTag)
-  // })
+  });  
 
   return (
+  
+  <ThemeProvider theme = {theme}>
 
-    <ThemeProvider theme = {theme}>
-      {/* <div ref={instance} /> */}
+
     <React.Fragment>
       <Router>
         <div>
           <Switch>
             <Route exact path = {"/"}>
               <SignIn components = {SignIn} />
+              
               <Footer/>
             </Route>
             
@@ -55,8 +54,9 @@ function App (){
             </Route>
 
             <Route exact path = {"/userdashboard"}>
-              <UserDashboard />
-              
+              <UserDashboard components = {UserDashboard} />
+             
+
             </Route>
 
             <Route exact path = {"/userdashboard/crypto"}>
@@ -65,7 +65,8 @@ function App (){
             </Route>
 
             <Route exact path = {"/userdashboard/stocks"}>
-              <Stocks />
+              <Stocks components = {Stocks} />
+
               
             </Route>
             <Route exact path = {"/userdashboard/favorites"}>
@@ -79,6 +80,7 @@ function App (){
       
     </React.Fragment>
   </ThemeProvider>
+
   
   );
 }

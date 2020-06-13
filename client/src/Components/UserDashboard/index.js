@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-// import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -21,12 +20,15 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import Portfolio from '../Portfolio/index'
-import FavoriteList from './FavoriteList/index';
-import SearchBar from '../SearchBar/index';
+import StockComponent from './StockComponent/index';
+import StockWatch from '../StockWatch/index';
+import UserSquare from './UserSquare/index';
+import CryptoComponent from './CryptoComponent/index';
+import CryptoWatch from '../CryptoWatch/index';
+import Portfolio from '../Portfolio/index';
 import DashboardFooter from '../DashboardFooter/index';
 
-import Link from '@material-ui/core/Link';
+
 
 
 const drawerWidth = 240;
@@ -132,12 +134,13 @@ export default function Dashboard() {
 
   return (
     <div className={classes.root}>
+      
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            color="teal"
+            color="primary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
@@ -150,21 +153,24 @@ export default function Dashboard() {
             <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
             </Badge>
           </IconButton>
-
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography component="h1" variant="h6" color="inherit"  className={classes.title}>
             Coins N' Stockin'
           </Typography>
+
+
+          
+
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+
           <IconButton color="inherit">
             <Badge color="secondary">
               <ExitToAppIcon/> Logout
             </Badge>
           </IconButton>
-
           
         </Toolbar>
       </AppBar>
@@ -183,6 +189,8 @@ export default function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        {/*User picture ! */}
+       
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
@@ -193,49 +201,57 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          
-          <Grid container spacing ={6} justify="flex-end">
-
-            <Grid item>
-              <Paper>
-                <SearchBar/>
-              </Paper>
-              
-            </Grid>
-
-          </Grid>
-          
-
           <Grid container spacing={6}>
 
+            {/* User Square */}
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={classes.paper}>
+                <UserSquare />
+              </Paper>
+            </Grid>
+
             <Grid item xs={12} md={4} lg={8}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 <Portfolio/>
               </Paper>
             </Grid>
 
           </Grid>
 
-          <Grid container spacing={6}>
-
-            <Grid item xs={12} md={4} lg={6}>
-              <Paper className={classes.paper}>
-                <FavoriteList/>
+          <Grid container spacing = {6}>
+            {/* Chart.js with stocks */}
+            <Grid item xs={12} md={6} lg={6}>
+              <Paper className={fixedHeightPaper}>
+                <StockComponent />
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={4} lg={6}>
+            <Grid item xs={12} md ={6} lg={6}>
+              <Paper className={fixedHeightPaper}>
+                <CryptoComponent />
+              </Paper>
+            </Grid>
+
+
+            {/* Stocks and crypto to look at  */}
+            <Grid item xs={12}>
+              <Paper className={fixedHeightPaper}>
+                <StockWatch />
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <FavoriteList/>
+                <CryptoWatch />
               </Paper>
             </Grid>
 
           </Grid>
-         
+          
         </Container>
         <DashboardFooter/>
-
       </main>
+      
     </div>
+    
   );
 }

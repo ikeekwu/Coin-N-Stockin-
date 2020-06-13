@@ -1,11 +1,10 @@
 //Main holder for Userdashboard 
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-// import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -16,18 +15,37 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import Portfolio from '../Portfolio/index'
-import FavoriteList from './FavoriteList/index';
-import SearchBar from '../SearchBar/index';
-import DashboardFooter from '../DashboardFooter/index';
+import Avatar from '@material-ui/core/Avatar';
+// Components
+import { mainListItems, secondaryListItems } from '../Components/SideNavbar';
+import StockComponent from '../Components/StockComponent/index.js';
+import SearchBar from '../Components/SearchBar';
+import StockWatch from '../Components/StockWatch/index.js';
+import UserSquare from '../Components/UserSquare/index.js';
+import CryptoComponent from '../Components/CryptoComponent/index.js';
+import CryptoWatch from '../Components/CryptoWatch/index.js';
+import Portfolio from '../Components/Portfolio/index.js';
+// API
+import API from "../utils/API.js";
 
-import Link from '@material-ui/core/Link';
+function Dashboard() {
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -119,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -130,6 +148,51 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  // Stocks
+  const [company, setCompany] = useState({})
+  const [stock, setStock] = useState({})
+  
+    useEffect(() => {
+      async function load(){
+        const stockss = await loadStocks();
+        await searchStocks(stockss)
+      }
+      load();
+    }, [])
+  
+  function loadStocks(){
+    return API.getAllStocks()
+      .then(res => {
+        setStock(res.data)
+        return(res.data)
+      })
+      .catch(err => console.log(err));
+    };
+      
+   async function searchStocks(stockss){ 
+    await API.getStockPrices(stockss)
+      .then(res =>{
+        setCompany(res.data)})
+      .catch(err => console.log(err));
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -137,20 +200,13 @@ export default function Dashboard() {
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            color="teal"
+            color="primary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
-
-          <IconButton color="inherit">
-            <Badge >
-            <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
-            </Badge>
-          </IconButton>
-
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
@@ -159,12 +215,9 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
-            <Badge color="secondary">
-              <ExitToAppIcon/> Logout
-            </Badge>
-          </IconButton>
 
+          {/*User picture ! */}
+          <Avatar alt="User" src="#" className={classes.small} />
           
         </Toolbar>
       </AppBar>
@@ -193,49 +246,59 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          
-          <Grid container spacing ={6} justify="flex-end">
-
-            <Grid item>
-              <Paper>
-                <SearchBar/>
-              </Paper>
-              
-            </Grid>
-
-          </Grid>
-          
-
           <Grid container spacing={6}>
 
+            {/* User Square */}
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={classes.paper}>
+                <UserSquare />
+              </Paper>
+            </Grid>
+
             <Grid item xs={12} md={4} lg={8}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 <Portfolio/>
               </Paper>
             </Grid>
 
           </Grid>
 
-          <Grid container spacing={6}>
-
-            <Grid item xs={12} md={4} lg={6}>
-              <Paper className={classes.paper}>
-                <FavoriteList/>
+          <Grid container spacing = {6}>
+            {/* Chart.js with stocks */}
+            <Grid item xs={12} md={6} lg={6}>
+              <Paper className={fixedHeightPaper}>
+                <SearchBar/>
+                <StockComponent />
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={4} lg={6}>
+            <Grid item xs={12} md ={6} lg={6}>
+              <Paper className={fixedHeightPaper}>
+                <CryptoComponent />
+              </Paper>
+            </Grid>
+
+
+            {/* Stocks and crypto to look at  */}
+            <Grid item xs={12}>
+              <Paper className={fixedHeightPaper}>
+                <StockWatch />
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <FavoriteList/>
+                <CryptoWatch />
               </Paper>
             </Grid>
 
           </Grid>
-         
+          <Box pt={4}>
+            <Copyright />
+          </Box>
         </Container>
-        <DashboardFooter/>
-
       </main>
     </div>
   );
 }
+
+export default Dashboard;

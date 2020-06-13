@@ -8,8 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from '../../Title/index';
 
-// import Title from '../TitleComponent/index'
-
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
@@ -37,7 +35,7 @@ export default function Orders() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Favorite listings:</Title>
+      <Title>Cryptocurrency Standings</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
