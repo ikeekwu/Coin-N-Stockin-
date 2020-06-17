@@ -7,14 +7,16 @@ class CandleStick extends Component {
             console.log(props)
         this.state = {
           series: [{
-            data: props.chartData.slice()
+            data: props.chartData,
+            height:"240",
+            width:"300"
           }],
           options: {
             chart: {
                 type: 'candlestick'
               },
               title: {
-                text: 'CandleStick Chart',
+                text: '',
                 align: 'left'
               },
               xaxis: {
@@ -136,8 +138,6 @@ class CandleStick extends Component {
         options={this.state.options}
         series={this.state.series}
         type="candlestick"
-        height="240"
-        width="240"
       />
       )
     }

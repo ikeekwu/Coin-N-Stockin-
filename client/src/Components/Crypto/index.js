@@ -22,7 +22,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import CryptoComponent from './CryptoComponent/index';
+import CryptoComponent from '../CryptoComponent';
 import Portfolio from '../Portfolio/index';
 import SearchBar from '../SearchBar/index';
 import DashboardFooter from '../DashboardFooter/index';

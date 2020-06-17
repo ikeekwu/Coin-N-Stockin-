@@ -1,10 +1,10 @@
 //Main holder for Userdashboard 
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -15,21 +15,37 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import StockComponent from './StockComponent/index';
-import StockWatch from '../StockWatch/index';
-import UserSquare from './UserSquare/index';
-import CryptoComponent from './CryptoComponent/index';
-import CryptoWatch from '../CryptoWatch/index';
-import Portfolio from '../Portfolio/index';
-import DashboardFooter from '../DashboardFooter/index';
+import Avatar from '@material-ui/core/Avatar';
+// Components
+import { mainListItems, secondaryListItems } from '../SideNavbar';
+import StockComponent from '../StockComponent/index.js';
+import SearchBar from '../SearchBar';
+import StockWatch from '../StockWatch/index.js';
+import UserSquare from '../UserSquare/index.js';
+import CryptoComponent from '../CryptoComponent';
+import CryptoWatch from '../CryptoWatch';
+import Portfolio from '../Portfolio/index.js';
+// API
+import API from "../../utils/API.js";
 
+function Dashboard() {
 
-
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -121,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -132,9 +148,53 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  // Stocks
+  const [company, setCompany] = useState({})
+  const [stock, setStock] = useState({})
+  
+    useEffect(() => {
+      async function load(){
+        const stockss = await loadStocks();
+        await searchStocks(stockss)
+      }
+      load();
+    }, [])
+  
+  function loadStocks(){
+    return API.getAllStocks()
+      .then(res => {
+        setStock(res.data)
+        return(res.data)
+      })
+      .catch(err => console.log(err));
+    };
+      
+   async function searchStocks(stockss){ 
+    await API.getStockPrices(stockss)
+      .then(res =>{
+        setCompany(res.data)})
+      .catch(err => console.log(err));
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className={classes.root}>
-      
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
@@ -147,33 +207,22 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-
-          <IconButton color="inherit">
-            <Badge >
-            <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
-            </Badge>
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit"  className={classes.title}>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
-
-
-          
-
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
 
-          <IconButton color="inherit">
-            <Badge color="secondary">
-              <ExitToAppIcon/> Logout
-            </Badge>
-          </IconButton>
+          {/*User picture ! */}
+          <Avatar alt="User" src="#" className={classes.small} />
           
         </Toolbar>
       </AppBar>
+
+      
 
       
       <Drawer
@@ -189,8 +238,6 @@ export default function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        {/*User picture ! */}
-       
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
@@ -246,12 +293,13 @@ export default function Dashboard() {
             </Grid>
 
           </Grid>
-          
+          <Box pt={4}>
+            <Copyright />
+          </Box>
         </Container>
-        <DashboardFooter/>
       </main>
-      
     </div>
-    
   );
 }
+
+export default Dashboard;
