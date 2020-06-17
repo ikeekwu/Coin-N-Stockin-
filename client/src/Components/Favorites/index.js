@@ -26,8 +26,9 @@ import FavoriteList from './FavoriteList/index';
 import SearchBar from '../SearchBar/index';
 import DashboardFooter from '../DashboardFooter/index';
 import Stocks from '../Stocks/StockComponent/index';
+import CandleStick from '../CandleStick/index';
 
-import Link from '@material-ui/core/Link';
+
 
 
 const drawerWidth = 240;
@@ -207,9 +208,14 @@ export default function Dashboard() {
           </Grid>
           
 
-          <Grid container spacing={6}>
+          <Grid container spacing={6} >
+            <Grid item xs={12} md={4} lg={6} >
+              <Paper className={fixedHeightPaper}>
+                <Typography justifyContent = "center">Favorites!</Typography>
+              </Paper>
+            </Grid>
 
-            <Grid item xs={12} md={4} lg={8}>
+            <Grid item xs={12} md={4} lg={6}>
               <Paper className={fixedHeightPaper}>
                 <Portfolio/>
               </Paper>
@@ -219,13 +225,13 @@ export default function Dashboard() {
 
           <Grid container spacing={6}>
 
-            <Grid item xs={12} md={4} lg={6}>
-              <Paper className={fixedHeightPaper}>
-                <Stocks />
+            <Grid item xs={12} md={6} lg={12}>
+              <Paper className={classes.paper}>
+                <CandleStick  />
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={4} lg={6}>
+            <Grid item xs={12} md={6} lg={12}>
               <Paper className={classes.paper}>
                 <FavoriteList/>
               </Paper>

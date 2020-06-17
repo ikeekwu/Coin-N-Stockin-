@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
+import Typography from '@material-ui/core/Typography';
 
 class CandleStick extends Component {
     constructor(props) {
@@ -134,12 +135,16 @@ class CandleStick extends Component {
 
     render(){
       return (
+        <div>
+      <Typography> Your Stocks</Typography>
+      
       <Chart
         options={this.state.options}
         series={this.state.series}
-        type="candlestick"
-      />
-      )
+        type="candlestick"/>
+      </div>
+      
+      );
     }
 }
 

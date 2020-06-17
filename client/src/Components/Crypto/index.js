@@ -221,7 +221,7 @@ export default function Dashboard() {
           </Grid>
           
 
-          <Grid container spacing={6}>
+          <Grid container spacing={6} justify="flex-end">
 
             <Grid item xs={12} md={6} lg={6}>
               <Paper className={fixedHeightPaper}>

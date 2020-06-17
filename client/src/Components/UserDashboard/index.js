@@ -19,7 +19,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import Avatar from '@material-ui/core/Avatar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // Components
 import { mainListItems, secondaryListItems } from '../SideNavbar';
 import StockComponent from '../StockComponent/index.js';
@@ -207,6 +207,13 @@ const useStyles = makeStyles((theme) => ({
           >
             <MenuIcon />
           </IconButton>
+
+          <IconButton color="inherit">
+            <Badge >
+            <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
+            </Badge>
+          </IconButton>
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
@@ -216,8 +223,11 @@ const useStyles = makeStyles((theme) => ({
             </Badge>
           </IconButton>
 
-          {/*User picture ! */}
-          <Avatar alt="User" src="#" className={classes.small} />
+          <IconButton color="inherit">
+            <Badge color="secondary">
+              <ExitToAppIcon/> Logout
+            </Badge>
+          </IconButton>
           
         </Toolbar>
       </AppBar>

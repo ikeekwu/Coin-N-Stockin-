@@ -483,24 +483,38 @@ export default function Dashboard() {
 
               <Paper>
                 <SearchBar/>
-                <CandleStick chartData={Ddata} />
+                
               </Paper>
 
               
             </Grid>
           </Grid>
 
+          <Grid container spacing = {6} justify="flex-end">
+
+            <Grid item xs={12} md={6} lg={6}>
+              <Paper className={fixedHeightPaper}>
+                <Portfolio />
+              </Paper>
+            </Grid>
+
+          </Grid>
 
           <Grid container spacing = {6}>
             {/* Chart.js with stocks */}
 
-            <Grid item xs={12} md={6} lg={6}>
-              <Paper className={classes.paper}>
-                <Portfolio />
-              </Paper>
-            </Grid>
             <Grid item xs={12} md={6} lg={12}>
-              <Paper className={fixedHeightPaper}>
+
+              <Paper>
+               
+                <CandleStick chartData={Ddata} />
+              </Paper>
+
+              
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={12}>
+              <Paper className={classes.paper}>
                 <StockComponent />
               </Paper>
             </Grid>
