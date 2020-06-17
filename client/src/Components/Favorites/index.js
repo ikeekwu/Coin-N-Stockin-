@@ -24,6 +24,7 @@ import Portfolio from '../Portfolio/index'
 import FavoriteList from './FavoriteList/index';
 import SearchBar from '../SearchBar/index';
 import DashboardFooter from '../DashboardFooter/index';
+import Stocks from '../Stocks/StockComponent/index';
 
 
 const drawerWidth = 240;
@@ -213,8 +214,8 @@ export default function Dashboard() {
           <Grid container spacing={6}>
 
             <Grid item xs={12} md={4} lg={6}>
-              <Paper className={classes.paper}>
-                <FavoriteList/>
+              <Paper className={fixedHeightPaper}>
+                <Stocks />
               </Paper>
             </Grid>
 

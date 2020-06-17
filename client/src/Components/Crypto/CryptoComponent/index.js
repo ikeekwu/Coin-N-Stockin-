@@ -14,11 +14,11 @@ function createData(id, date, name, shipTo, paymentMethod, amount) {
 }
 
 const rows = [
-  createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-  createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-  createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
+  createData(0, '1', 'Bitcoin', '$9,430.00', '-0.34%', 173.5),
+  createData(1, '2', 'Ethereum', '$236.57', '-0.00%',26.3 ),
+  createData(2, '3', 'Tether', '$1.00', '+0.43%', 9.2),
+  createData(3, '4', 'XRP', '$0.19', '-1.29%', 8.5),
+  createData(4, '5', 'Bitcoin Cash', '$239.47', '-0.85%', 4.4),
 ];
 
 function preventDefault(event) {
@@ -43,7 +43,7 @@ export default function Orders() {
             <TableCell>Name</TableCell>
             <TableCell>Price</TableCell>
             <TableCell>Change</TableCell>
-            <TableCell align="right">Market Cap</TableCell>
+            <TableCell align="right">Market Cap(Bilions)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,7 +60,7 @@ export default function Orders() {
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
+          See more crypto
         </Link>
       </div>
     </React.Fragment>
