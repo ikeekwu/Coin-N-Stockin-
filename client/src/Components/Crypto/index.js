@@ -5,6 +5,8 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+
+import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -20,12 +22,28 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems, secondaryListItems } from '../SideNavbar/index';
-import CryptoComponent from './CryptoComponent/index';
+import CryptoComponent from '../CryptoComponent';
 import Portfolio from '../Portfolio/index';
 import SearchBar from '../SearchBar/index';
 import DashboardFooter from '../DashboardFooter/index';
 
 
+
+import Link from '@material-ui/core/Link';
+
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -148,6 +166,7 @@ export default function Dashboard() {
             <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
             </Badge>
           </IconButton>
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
@@ -162,6 +181,7 @@ export default function Dashboard() {
               <ExitToAppIcon/> Logout
             </Badge>
           </IconButton>
+
         </Toolbar>
       </AppBar>
 
@@ -200,6 +220,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           
+
           <Grid container spacing={6}>
 
             <Grid item xs={12} md={6} lg={6}>
@@ -222,6 +243,7 @@ export default function Dashboard() {
           
         </Container>
         <DashboardFooter/>
+
       </main>
     </div>
   );

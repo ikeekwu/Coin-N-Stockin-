@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+// import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -25,6 +26,8 @@ import FavoriteList from './FavoriteList/index';
 import SearchBar from '../SearchBar/index';
 import DashboardFooter from '../DashboardFooter/index';
 import Stocks from '../Stocks/StockComponent/index';
+
+import Link from '@material-ui/core/Link';
 
 
 const drawerWidth = 240;
@@ -148,6 +151,7 @@ export default function Dashboard() {
             <img alt="" src={ require("../../utils/images/coin.png")} className={classes.large} color ="primary"/>
             </Badge>
           </IconButton>
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Coins N' Stockin'
           </Typography>
@@ -161,6 +165,7 @@ export default function Dashboard() {
               <ExitToAppIcon/> Logout
             </Badge>
           </IconButton>
+
           
         </Toolbar>
       </AppBar>
@@ -201,6 +206,7 @@ export default function Dashboard() {
 
           </Grid>
           
+
           <Grid container spacing={6}>
 
             <Grid item xs={12} md={4} lg={8}>
@@ -229,6 +235,7 @@ export default function Dashboard() {
          
         </Container>
         <DashboardFooter/>
+
       </main>
     </div>
   );

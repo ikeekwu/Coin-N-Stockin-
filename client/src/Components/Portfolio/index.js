@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Title from '../Title/index';
 import Grid from '@material-ui/core/Grid';
 
+// import Title from '../TitleComponent/index.js';
 
 
 function preventDefault(event) {
@@ -42,6 +43,7 @@ export default function Deposits() {
           </Grid>
 
         </Grid>
+
       </div>
     </React.Fragment>
   );

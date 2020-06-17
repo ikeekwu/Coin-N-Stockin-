@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     color:"white",
+
   },
 }));
 
@@ -105,11 +106,11 @@ export default function SignInSide() {
             />
 
             <Link href="/userdashboard" variant="inherit">
-              <Button component ={Link} to ="/userdashboard" 
+              <Button component ={Link} to ="/api/account/signin" 
                 type="submit"
                 fullWidth
                 variant="contained"
-                color ="primary"
+                color="primary"
                 className={classes.submit}
               >
                 Sign In
