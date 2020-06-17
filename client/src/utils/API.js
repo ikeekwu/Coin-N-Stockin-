@@ -4,8 +4,11 @@ import axios from "axios";
 
 export default {
   // Gets alls
-  userSignIn: function () {
-    return axios.get("/api/account/");
+  userSignUp: function (accountData) {
+    return axios.post("/api/account/", accountData);
+  },
+  userSignIn: function (accountData) {
+    return axios.post("/api/account/signin", accountData);
   },
   getAllStocks: function() {
     return axios.get("/api/stocks/");

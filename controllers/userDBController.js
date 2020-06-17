@@ -20,7 +20,7 @@ module.exports = {
         // console.log(res)
         console.log(body);
 
-        if (!firstName) {
+    if (!firstName) {
             return res.send({
             success: false,
             message: 'Invalid input1'
@@ -91,6 +91,70 @@ module.exports = {
         });
     })
     },
-    UserSignIn: (req, res, next) => {
+    signIn: (req, res, next) => {
+            const { body } = req;
+            const { password } = body;
+            let { email } = body;
+    
+            email = email.toLowerCase();
+    
+            // Input checks
+            if (!email) {
+                return res.send({
+                    success: false,
+                    message: 'Invalid input3'
+                })
+            }
+    
+            if (!password) {
+                return res.send({
+                    success: false,
+                    message: 'Invalid input4'
+                });
+            }
+    
+            // Validate User
+            User.find({
+                email: email
+            }, (err, user) => {
+                if (err) {
+                return res.send({
+                success: false,
+                message: 'Server Error'
+                });
+                }
+                if (user.length != 1) {
+                    return res.send({
+                        success: false,
+                        message: "Invalid"
+                    })
+                }
+    
+                const users = user[0]
+    
+                if (!users.validPassword(password)) {
+                    return res.send({
+                        success: false,
+                        message: 'Error: Invalid'
+                    });
+                }
+    
+                const userSession = new UserSession();
+                userSession.userId = user._id
+                userSession.save((err, doc) => {
+                    if (err) {
+                    return res.send({
+                        success: false,
+                        message: 'Error: server error'
+                    });
+                    }
+    
+                    return res.send({
+                        success: true,
+                        message: 'Valid sign in',
+                        token: doc._id
+                    });
+                });
+            });
     }
 }

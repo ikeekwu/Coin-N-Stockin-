@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import Title from '../TitleComponent/index';
 
 import CandleStick from '../CandleStick';
 
+import API from '../../utils/API'
+
  function Chart(props) {
   const theme = useTheme();
   
-
+	// console.log(props)
 	const jokeData = [{
 		x: new Date(1538778600000),
 		y: [6629.81, 6650.5, 6623.04, 6633.33]
@@ -249,7 +251,33 @@ import CandleStick from '../CandleStick';
 		y: [6604.98, 6606, 6604.07, 6606]
 	  }]
 
-
+	  // Stocks
+	  const [company, setCompany] = useState({})
+	  const [stock, setStock] = useState({})
+	  
+		useEffect(() => {
+		  async function load(){
+			const stockss = await loadStocks();
+			await searchStocks(stockss)
+		  }
+		  load();
+		}, [])
+	  
+	  function loadStocks(){
+		return API.getAllStocks()
+		  .then(res => {
+			setStock(res.data)
+			return(res.data)
+		  })
+		  .catch(err => console.log(err));
+		};
+		  
+	   async function searchStocks(stockss){ 
+		await API.getStockPrices(stockss)
+		  .then(res =>{
+			setCompany(res.data)})
+		  .catch(err => console.log(err));
+	  }
 
   return (
     <React.Fragment>

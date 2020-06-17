@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,8 +12,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import API from '../../utils/API'
+
+
 
 function Copyright() {
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -49,6 +53,35 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [formObject, setFormObject] = useState({})
+
+
+
+  function handleSubmit(event) {
+      event.preventDefault();
+      console.log( 'Email:', email, 'Password: ', password, firstName); 
+
+        API.userSignUp({
+          firstName: firstName,
+          lastName: lastName,
+          password: password,
+          email: email,
+      })
+      .catch(err => console.log(err));
+  }
+
+
+
+
+
+
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,10 +92,12 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                value={firstName}
+                onInput={e=>setFirstName(e.target.value)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -75,6 +110,8 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                value={lastName}
+                onInput={e=>setLastName(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -86,6 +123,8 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={email}
+                onInput={e=>setEmail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -97,6 +136,8 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={password}
+                onInput={e=>setPassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -114,6 +155,7 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
+
           <Button
             type="submit"
             fullWidth
