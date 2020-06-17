@@ -26,7 +26,18 @@ module.exports = {
                 // console.log(response[0])
                 // res.json(JSON.stringify(response))
                 const boxData = response.map((data) => {
-                    return data.data
+                    
+                    const {last_time, open_price, high_price, low_price, last_price} = data.data
+                    
+                    const cData = [{
+                        x: last_time,
+                        y: [open_price, high_price, low_price, last_price]
+                    }]
+
+                    // console.log(cData)
+
+
+                    return cData
                 })
                 // console.log(boxData)
                 res.json(boxData)
