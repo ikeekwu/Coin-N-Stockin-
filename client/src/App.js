@@ -13,7 +13,6 @@ import {green, red,} from "@material-ui/core/colors";
 import "./App.css";
 import "./utils/CSS/App.css";
 
-import Footer from './Components/Footer/index';
 
 // import UserDashboard from './pages/UserDashboard.js';
 // import Stocks from './pages/Stocks.js';

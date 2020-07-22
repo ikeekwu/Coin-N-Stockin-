@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import API from '../../utils/API'
 
 
 
@@ -65,6 +66,26 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log( 'Email:', email, 'Password: ', password); 
+
+    API.userSignIn({
+      email: email,
+      password: password
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+}
+
+
+
+
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -77,8 +98,10 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
+              value={email}
+              onInput={e=>setEmail(e.target.value)}
               variant="outlined"
               margin="normal"
               required
@@ -90,6 +113,8 @@ export default function SignInSide() {
               autoFocus
             />
             <TextField
+              value={password}
+              onInput={e=>setPassword(e.target.value)}
               variant="outlined"
               margin="normal"
               required
