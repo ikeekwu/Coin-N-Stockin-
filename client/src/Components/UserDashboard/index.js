@@ -31,10 +31,54 @@ import CryptoWatch from '../CryptoWatch';
 import Portfolio from '../Portfolio/index.js';
 // API
 import API from "../../utils/API.js";
+import {
+  getFromStorage,
+  setInStorage
+} from '../../utils/storage';
 
 function Dashboard() {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+      token: '',
+      signUpError: '',
+      signInError: '',
+    };
+  }
+
+  componentDidMount() {
+   const token = getFromStorage('the_main_app')
+    if (token) {
+      // verify the token
+      fetch('/api/account/verify?token=' + token)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          this.setState({
+            token,
+            isLoading: false
+          });
+        } else {
+          this.setState({
+            isLoading: false
+          })
+        }
+      })
+    } else {
+      this.state.set({
+        isLoading: false,
+      })
+    }
+  }
+
 function Copyright() {
+  const {
+    isLoading,
+  } = this.state;
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
