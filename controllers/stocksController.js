@@ -2,6 +2,7 @@ const axios = require("axios")
 
 const Intrinio_API_KEY = "api_key=OmE4NDQ2ZDRiNDA4ZWYwMjAyZDViOWMxMjJlNzY2MzI3";
 
+// Axios call for intrinio to grab market data for prices.
 module.exports = {
     getSearch: function(req, res){
         axios.get(`https://api-v2.intrinio.com/companies?`+ Intrinio_API_KEY)
