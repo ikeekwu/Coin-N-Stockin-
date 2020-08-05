@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     }
 });
 
-
+// Generates hashed password for users.
 UserSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null) ;
 
