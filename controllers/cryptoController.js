@@ -1,5 +1,6 @@
 const axios = require("axios")
 
+// Axios call used for grabbing market data.
 module.exports = {
     getSearch: function(req, res){
         axios({
