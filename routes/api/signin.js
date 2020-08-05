@@ -74,6 +74,8 @@ router.get('/api/account/logout', (req, res, next) => {
     })  
 });
 
+// Stores assets use owns in database
+
 router.post('/api/account/assets', (req,res, next) => {
             const {
                 body
