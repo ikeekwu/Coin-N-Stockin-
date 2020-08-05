@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+// Creates user validation for each session to confirm user login.
 const UserSessionSchema = new mongoose.Schema({
     userId: {
         type: Number,
