@@ -42,7 +42,7 @@ UserSchema.methods.generateHash = function(password) {
 UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
-
+// Stores the model as a constant then exports it from this JS file.
 const User = mongoose.model("User", UserSchema)
 
 module.exports = User;
